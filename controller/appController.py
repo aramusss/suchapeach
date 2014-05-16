@@ -1,6 +1,7 @@
 __author__ = 'aram'
 
 import sys
+import os
 
 sys.path.insert(0, '../model')
 from mobileapp import *
@@ -51,7 +52,47 @@ class AppController:
                 orderedList.remove(app)
         if orderedList:
             self.printOrderedList(orderedList)
-
+    def sumarDescarga(self, nombre, pathToDb="../database/database.txt"):
+        """Suma una descarga a la aplicación con ese nombre. Devuelve True o False en funcion de si se ha encontrado (y modificado) o no"""
+        if os.path.isfile(pathToDb):
+            file = open(pathToDb, 'r')
+            llista = file.readlines()
+            file.close()
+            trobat = False
+            with open(pathToDb, 'w') as file:
+                for linia in llista:
+                    if linia.split(";")[0] != nombre:
+                        file.write(linia)
+                    else:
+                        linia1 = linia.split(";")
+                        descargues = int(linia.split(";")[4])
+                        resultat = linia1[0]+";"+linia1[1]+";"+linia1[2]+";"+linia1[3]+";"+str(descargues+1)+";"+linia1[5]+";"+linia1[6]+";"+linia1[7]
+                        file.write(resultat)
+                        trobat = True
+        else:
+            print("Error! No se ha podido encontrar el fichero de aplicaciones!")
+        return trobat
+    def sumarComentario(self, nombre,  pathToDb="../database/database.txt"):
+        """Suma un comentario a la aplicación con ese nombre. Devuelve True o False en funcion de si se ha encontrado (y modificado) o no"""
+        if os.path.isfile(pathToDb):
+            file = open(pathToDb, 'r')
+            llista = file.readlines()
+            file.close()
+            trobat = False
+            with open(pathToDb, 'w') as file:
+                for linia in llista:
+                    if linia.split(";")[0] != nombre:
+                        file.write(linia)
+                    else:
+                        linia1 = linia.split(";")
+                        comentarios = linia.split(";")[7]
+                        comentarios = int(comentarios)
+                        resultat = linia1[0]+";"+linia1[1]+";"+linia1[2]+";"+linia1[3]+";"+linia1[4]+";"+linia1[5]+";"+linia1[6]+";"+str(comentarios+1)+"\n"
+                        file.write(resultat)
+                        trobat = True
+        else:
+            print("Error! No se ha podido encontrar el fichero de aplicaciones!")
+        return trobat
 
 test = AppController()
 test.listApps(1)

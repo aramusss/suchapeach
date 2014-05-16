@@ -25,11 +25,28 @@ while(True):
         optionChosen2 = int(input("Select an option: "))
         appController.listApps(optionChosen2)
     if(optionChosen == 3):
-        print("TODO")
+        dbController = DbController()
+        appUnorderedList = dbController.getAllApps()
+        for appString in appUnorderedList:
+            name, developer, date, price, numberDownloads, numberScores, score, numberComments = appString.split(";")
+            app = MobileApp(name, developer, date, int(price), numberDownloads, numberScores, score, numberComments)
+            print (app.getName());
+        appName = input("Insert app name: ")
+        correct = appController.sumarDescarga(appName)
+        if correct:
+            print("Done.")
     if(optionChosen == 4):
+        dbController = DbController()
+        appUnorderedList = dbController.getAllApps()
+        for appString in appUnorderedList:
+            name, developer, date, price, numberDownloads, numberScores, score, numberComments = appString.split(";")
+            app = MobileApp(name, developer, date, int(price), numberDownloads, numberScores, score, numberComments)
+            print (app.getName());
         appName = input("Insert app name: ")
         comment = input("Write comment: ")
-        print("TODO")
+        correct = appController.sumarComentario(app.getName())
+        if correct:
+            print("Done.")
     if(optionChosen == 5):
         dbController = DbController()
         appUnorderedList = dbController.getAllApps()
