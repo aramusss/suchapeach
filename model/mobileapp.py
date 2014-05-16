@@ -41,8 +41,10 @@ class MobileApp:
         database = DbController()
         database.insertLine(appLine)
 
-    def isFree(self):
+    def calcTotalMoneyEarned(self):
+
+        totalMoney = float(self.price) * float(self.numberDownloads)
         if self.price == 0:
-            return True
+            print("Free apps don't have this option!")
         else:
-            return False
+            print("Total money earned with selled: " + str(totalMoney))
