@@ -52,6 +52,8 @@ class AppController:
                 orderedList.remove(app)
         if orderedList:
             self.printOrderedList(orderedList)
+
+    #CODE FUNCTION FROM ADRIA BIARNES
     def sumarDescarga(self, nombre, pathToDb="../database/database.txt"):
         """Suma una descarga a la aplicación con ese nombre. Devuelve True o False en funcion de si se ha encontrado (y modificado) o no"""
         if os.path.isfile(pathToDb):
@@ -72,6 +74,7 @@ class AppController:
         else:
             print("Error! No se ha podido encontrar el fichero de aplicaciones!")
         return trobat
+    #CODE FUNCTION FROM ADRIA BIARNES
     def sumarComentario(self, nombre,  pathToDb="../database/database.txt"):
         """Suma un comentario a la aplicación con ese nombre. Devuelve True o False en funcion de si se ha encontrado (y modificado) o no"""
         if os.path.isfile(pathToDb):
