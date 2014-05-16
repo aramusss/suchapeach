@@ -10,5 +10,12 @@ class DbController:
 
     def insertLine(self, line):
         with open(self.pathToDb, "a") as f:
-            f.write(line)
+            f.write(line + "\n")
             print("App added successfully!")
+
+    def getAllApps(self):
+        freeAppList = list()
+        with open(self.pathToDb, "r") as f:
+            for line in f:
+                freeAppList.append(line)
+        return freeAppList

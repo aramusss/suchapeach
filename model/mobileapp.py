@@ -1,6 +1,7 @@
 __author__ = 'aram'
 
 import sys
+import datetime
 sys.path.insert(0, '../controller')
 from dbController import *
 
@@ -39,3 +40,9 @@ class MobileApp:
         appLine = self.name + ";" + self.developer + ";" + self.date + ";" + str(self.price) + ";" + str(self.numberDownloads) + ";" + str(self.numberScores) + ";" + str(self.score) + ";" + str(self.numberComments)
         database = DbController()
         database.insertLine(appLine)
+
+    def isFree(self):
+        if self.price == 0:
+            return True
+        else:
+            return False
